@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DodoPizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DodoPizzaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="DodoPizzaModel.Customers" />
+    <EntitySet Name="Ingredients" EntityType="DodoPizzaModel.Ingredients" />
+    <EntitySet Name="OrderItems" EntityType="DodoPizzaModel.OrderItems" />
+    <EntitySet Name="Orders" EntityType="DodoPizzaModel.Orders" />
+    <EntitySet Name="ProductIngredients" EntityType="DodoPizzaModel.ProductIngredients" />
+    <EntitySet Name="Products" EntityType="DodoPizzaModel.Products" />
+    <AssociationSet Name="FK__ProductIn__Ingre__2B3F6F97" Association="DodoPizzaModel.FK__ProductIn__Ingre__2B3F6F97">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="ProductIngredients" EntitySet="ProductIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Order__30F848ED" Association="DodoPizzaModel.FK__OrderItem__Order__30F848ED">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Produ__31EC6D26" Association="DodoPizzaModel.FK__OrderItem__Produ__31EC6D26">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductIn__Produ__2A4B4B5E" Association="DodoPizzaModel.FK__ProductIn__Produ__2A4B4B5E">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductIngredients" EntitySet="ProductIngredients" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="Ingredients">
+    <Key>
+      <PropertyRef Name="IngredientID" />
+    </Key>
+    <Property Name="IngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+    <Property Name="Units" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StockQuantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="ProductIngredients" Relationship="DodoPizzaModel.FK__ProductIn__Ingre__2B3F6F97" FromRole="Ingredients" ToRole="ProductIngredients" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="OrderItemID" />
+    </Key>
+    <Property Name="OrderItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Orders" Relationship="DodoPizzaModel.FK__OrderItem__Order__30F848ED" FromRole="OrderItems" ToRole="Orders" />
+    <NavigationProperty Name="Products" Relationship="DodoPizzaModel.FK__OrderItem__Produ__31EC6D26" FromRole="OrderItems" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="OrderItems" Relationship="DodoPizzaModel.FK__OrderItem__Order__30F848ED" FromRole="Orders" ToRole="OrderItems" />
+  </EntityType>
+  <EntityType Name="ProductIngredients">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="IngredientID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="IngredientID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Ingredients" Relationship="DodoPizzaModel.FK__ProductIn__Ingre__2B3F6F97" FromRole="ProductIngredients" ToRole="Ingredients" />
+    <NavigationProperty Name="Products" Relationship="DodoPizzaModel.FK__ProductIn__Produ__2A4B4B5E" FromRole="ProductIngredients" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="OrderItems" Relationship="DodoPizzaModel.FK__OrderItem__Produ__31EC6D26" FromRole="Products" ToRole="OrderItems" />
+    <NavigationProperty Name="ProductIngredients" Relationship="DodoPizzaModel.FK__ProductIn__Produ__2A4B4B5E" FromRole="Products" ToRole="ProductIngredients" />
+  </EntityType>
+  <Association Name="FK__ProductIn__Ingre__2B3F6F97">
+    <End Type="DodoPizzaModel.Ingredients" Role="Ingredients" Multiplicity="1" />
+    <End Type="DodoPizzaModel.ProductIngredients" Role="ProductIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="IngredientID" />
+      </Principal>
+      <Dependent Role="ProductIngredients">
+        <PropertyRef Name="IngredientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Order__30F848ED">
+    <End Type="DodoPizzaModel.Orders" Role="Orders" Multiplicity="1" />
+    <End Type="DodoPizzaModel.OrderItems" Role="OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Produ__31EC6D26">
+    <End Type="DodoPizzaModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="DodoPizzaModel.OrderItems" Role="OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductIn__Produ__2A4B4B5E">
+    <End Type="DodoPizzaModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="DodoPizzaModel.ProductIngredients" Role="ProductIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductIngredients">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
