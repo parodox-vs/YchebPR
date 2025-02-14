@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Student.DESKTOP-QKGSV6O\Desktop\KAP\ychkapustnikov\ychkapustnikov\obj\Debug\
+D:\KAP\ychkapustnikov\ychkapustnikov\obj\Debug\
 ychkapustnikov
 none
 false
 DEBUG;TRACE
-C:\Users\Student.DESKTOP-QKGSV6O\Desktop\KAP\ychkapustnikov\ychkapustnikov\App.xaml
+D:\KAP\ychkapustnikov\ychkapustnikov\App.xaml
 17246287190
 21922779601
-33-865691463
-211589178239
+321216397155
+21-1089214859
 MainWindow.xaml;Pages\AddCustomer.xaml;Pages\AddIngridient.xaml;Pages\AddOrder.xaml;Pages\AddPozZakaz.xaml;Pages\AddProduct.xaml;Pages\AddProductIngredient.xaml;Pages\Avtoriz.xaml;Pages\Avtoriz2.xaml;Pages\Customer.xaml;Pages\Ingridient.xaml;Pages\Kopya.xaml;Pages\Main.xaml;Pages\Order.xaml;Pages\PozZakaz.xaml;Pages\Product.xaml;Pages\ProductIngredient.xaml;
 
-True
+False
 
