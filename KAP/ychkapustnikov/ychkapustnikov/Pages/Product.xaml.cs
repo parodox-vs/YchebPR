@@ -19,6 +19,7 @@ namespace ychkapustnikov.Pages
     /// <summary>
     /// Логика взаимодействия для Product.xaml
     /// </summary>
+    /// dsdssdsd
     public partial class Product : Page
     {
         public Product()
